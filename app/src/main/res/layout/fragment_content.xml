@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.anpetrus.prueba1.ContentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/nameEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_hint_edit_text"
+        android:textAlignment="center"
+        />
+
+    <RadioGroup
+        android:id="@+id/genderGroupRb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/genderMaleRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/male_radio_button" />
+
+        <RadioButton
+            android:id="@+id/genderFemaleRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/female_radio_button" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back_button"
+        android:visibility="gone"/>
+
+</LinearLayout>

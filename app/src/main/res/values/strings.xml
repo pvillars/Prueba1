@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Prueba 1</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="name_hint_edit_text">NOMBRE</string>
+    <string name="next_button">CONTINUAR</string>
+    <string name="back_button">VOLVER</string>
+    <string name="finish_button">FINALIZAR</string>
+
+    <string name="male_radio_button">Masculino</string>
+    <string name="female_radio_button">Femenino</string>
+
+    <string name="name_intent">name</string>
+    <string name="gender_intent">gender</string>
+</resources>
