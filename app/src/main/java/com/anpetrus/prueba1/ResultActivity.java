@@ -3,7 +3,8 @@ package com.anpetrus.prueba1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -13,9 +14,18 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
-        String name=intent.getStringExtra("NAME");
+        String nameIn = intent.getStringExtra("NAME").toUpperCase();
         boolean genderMale = intent.getBooleanExtra("GENDER_MALE", true); //Default true
-        String gender = (genderMale) ? "Masculino":"Femenino";
-        Toast.makeText(this,"Name: "+name+", Gender: " + gender , Toast.LENGTH_LONG).show();
+
+        ImageView imageResult = (ImageView) findViewById(R.id.imageResult);
+        TextView textResult = (TextView) findViewById(R.id.textResult);
+
+        if (genderMale) {
+            textResult.setText(nameIn.trim() + ", eres el mejor, SALUD!!!");
+            imageResult.setImageResource(R.mipmap.beer);
+        } else {
+            textResult.setText(nameIn.trim() + ", eres la mejor y la más hermoza!!!");
+            imageResult.setImageResource(R.mipmap.flower);
+        }
     }
 }

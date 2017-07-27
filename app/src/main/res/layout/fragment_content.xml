@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/input_padding"
     tools:context="com.anpetrus.prueba1.ContentFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,14 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/name_hint_edit_text"
+        android:maxLines="1"
+        android:inputType="textCapCharacters"
         android:textAlignment="center"
         />
 
     <RadioGroup
         android:id="@+id/genderGroupRb"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+
+        android:visibility="visible">
 
         <RadioButton
             android:id="@+id/genderMaleRb"

@@ -13,7 +13,8 @@
         android:id="@+id/questions_fragment"
         android:name="com.anpetrus.prueba1.ContentFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_margin_top"/>
 
     <TextView
         android:layout_width="match_parent"
