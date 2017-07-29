@@ -36,7 +36,7 @@ public class ResultActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Mostrar opciones de envio de imagen", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

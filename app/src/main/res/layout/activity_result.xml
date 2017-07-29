@@ -13,18 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="10">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
+            android:layout_marginTop="15dp"
             android:gravity="center"
             android:padding="@dimen/text_margin"
-            android:text="jskñdnñ lalñdfñs ñakdssfa ñkansdf "
+            android:text="jskñdnñ lalñdfñs ñakdssfa ñkansdf"
             android:textSize="15dp"
             android:textStyle="bold"
             android:typeface="serif" />
@@ -34,9 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="50dp"
-            android:layout_weight="9"
-            android:src="@mipmap/flower" />
+            android:layout_marginBottom="70dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/beer" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

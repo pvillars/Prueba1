@@ -44,6 +44,8 @@ public class ContentFragment extends Fragment {
         final RadioButton genderMaleRB = view.findViewById(R.id.genderMaleRb);
 
         genderGRB.setVisibility(View.GONE);
+        nameEt.setVisibility(View.VISIBLE);
+        backBtn.setVisibility(View.GONE);
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
