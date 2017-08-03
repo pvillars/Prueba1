@@ -23,8 +23,7 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:padding="@dimen/text_margin"
-            android:text="jskñdnñ lalñdfñs ñakdssfa ñkansdf"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:typeface="serif" />
 

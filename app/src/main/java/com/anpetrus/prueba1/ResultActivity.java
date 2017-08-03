@@ -1,17 +1,22 @@
 package com.anpetrus.prueba1;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -24,34 +29,68 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        result(getIntent());
 
-        Intent intent = getIntent();
-        final String nameIn = intent.getStringExtra("NAME").toUpperCase().trim();
-        boolean genderMale = intent.getBooleanExtra("GENDER_MALE", true); //Default true
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
+
+                } else {
+                    Toast.makeText(ResultActivity.this, R.string.permission_denied_read_external_extorage, Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+    }
+
+    private String nameIn = "";
+    private void result(Intent intent){
+
+        nameIn = intent.getStringExtra(Constants.EXTRA_NAME).toUpperCase().trim();
+        int genderSelected = intent.getIntExtra(Constants.EXTRA_GENDER_SELECTED,-1);
 
         final ImageView imageResult = (ImageView) findViewById(R.id.imageResult);
         TextView textResult = (TextView) findViewById(R.id.textResult);
 
-        if (genderMale) {
-            textResult.setText(nameIn + ", eres el mejor, SALUD!!!");
-            imageResult.setImageResource(R.mipmap.beer);
-        } else {
-            textResult.setText(nameIn + ", eres la mejor y la más hermoza!!!");
-            imageResult.setImageResource(R.mipmap.flower);
+        switch (genderSelected){
+            case 1:
+                textResult.setText(nameIn + getResources().getString(R.string.message_day_male));
+                imageResult.setImageResource(R.mipmap.beer);
+                break;
+            case 2:
+                textResult.setText(nameIn + getResources().getString(R.string.message_day_female));
+                imageResult.setImageResource(R.mipmap.flower);
+                break;
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sendImage);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // imageResult.setImageBitmap(getImage());
-                sharePic(getImage(),nameIn , "Mejorando el día");
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sendImage);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-            }
-        });
+
+                    int MyVersion = Build.VERSION.SDK_INT;
+                    if (MyVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                        ActivityCompat.requestPermissions(ResultActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    }else{
+                        sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
+                    }
+
+
+                }
+            });
+
     }
 
-    public Bitmap getImage() {
+    private Bitmap getImage() {
         LinearLayout shareLayout = (LinearLayout) this.findViewById(R.id.contentResultLayout);
         shareLayout.setDrawingCacheEnabled(true);
         shareLayout.buildDrawingCache();
@@ -83,7 +122,7 @@ public class ResultActivity extends AppCompatActivity {
             share.setType("image/jpeg");
             share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(f));
             share.putExtra(Intent.EXTRA_TEXT, message);
-            startActivity(Intent.createChooser(share, "Compartir imagen"));
+            startActivity(Intent.createChooser(share, getResources().getString(R.string.title_share_image)));
         } catch (IOException e) {
             Log.e("ERROR", e.getMessage());
         }
