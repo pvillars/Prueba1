@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import static android.view.View.VISIBLE;
 
-
 public class ContentFragment extends Fragment {
     public ContentFragment() {
         // Required empty public constructor
@@ -44,11 +43,11 @@ public class ContentFragment extends Fragment {
         genderGrb.setVisibility(View.GONE);
         nameEt.setVisibility(View.VISIBLE);
         backBtn.setVisibility(View.GONE);
+        step = Step.NAME;
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 switch (step) {
                     case Step.NAME:
                         if (!nameEt.getText().toString().trim().equals("")) {
@@ -76,7 +75,6 @@ public class ContentFragment extends Fragment {
                             startActivity(intent);
                         }else if(genderId > 2){
                             Toast.makeText(getContext(), R.string.problem_with_selection, Toast.LENGTH_SHORT).show();
-
                         }else{
                             Toast.makeText(getContext(), R.string.please_select_gender, Toast.LENGTH_SHORT).show();
                         }

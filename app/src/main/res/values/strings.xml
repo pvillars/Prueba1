@@ -14,7 +14,7 @@
     <string name="select_gender_txt">Selecciona genero:</string>
     <string name="please_enter_name">Favor ingresa tu Nombre</string>
     <string name="please_select_gender">Favor selecciona Genero</string>
-    <string name="problem_with_selection">Favor ingresa tu Nombre</string>
+    <string name="problem_with_selection">Error interno</string>
 
     <string name="message_day">Mejorando el día</string>
     <string name="message_day_male">, eres el mejor, SALUD!!!</string>
@@ -22,5 +22,5 @@
 
     <string name="title_share_image">Compartir imagen</string>
 
-    <string name="permission_denied_read_external_extorage">Permiso denegado para guardar imagen en almacenamiento externo</string>
+    <string name="permission_denied_read_external_extorage">Permiso denegado para guardar imagen en almacenamiento externo, favor permitir acceso.</string>
 </resources>

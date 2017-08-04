@@ -33,8 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="70dp"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/beer" />
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

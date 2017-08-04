@@ -43,7 +43,7 @@ public class ResultActivity extends AppCompatActivity {
                     sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
 
                 } else {
-                    Toast.makeText(ResultActivity.this, R.string.permission_denied_read_external_extorage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResultActivity.this, R.string.permission_denied_read_external_extorage, Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -51,15 +51,16 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private String nameIn = "";
-    private void result(Intent intent){
+
+    private void result(Intent intent) {
 
         nameIn = intent.getStringExtra(Constants.EXTRA_NAME).toUpperCase().trim();
-        int genderSelected = intent.getIntExtra(Constants.EXTRA_GENDER_SELECTED,-1);
+        int genderSelected = intent.getIntExtra(Constants.EXTRA_GENDER_SELECTED, -1);
 
         final ImageView imageResult = (ImageView) findViewById(R.id.imageResult);
         TextView textResult = (TextView) findViewById(R.id.textResult);
 
-        switch (genderSelected){
+        switch (genderSelected) {
             case 1:
                 textResult.setText(nameIn + getResources().getString(R.string.message_day_male));
                 imageResult.setImageResource(R.mipmap.beer);
@@ -70,23 +71,19 @@ public class ResultActivity extends AppCompatActivity {
                 break;
         }
 
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sendImage);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-
-                    int MyVersion = Build.VERSION.SDK_INT;
-                    if (MyVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
-                        ActivityCompat.requestPermissions(ResultActivity.this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                    }else{
-                        sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
-                    }
-
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sendImage);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int MyVersion = Build.VERSION.SDK_INT;
+                if (MyVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    ActivityCompat.requestPermissions(ResultActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                } else {
+                    sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
                 }
-            });
+            }
+        });
 
     }
 
@@ -95,7 +92,7 @@ public class ResultActivity extends AppCompatActivity {
         shareLayout.setDrawingCacheEnabled(true);
         shareLayout.buildDrawingCache();
         Bitmap bm = shareLayout.getDrawingCache();
-        // ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        //ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         //bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         return bm;
     }
@@ -109,7 +106,7 @@ public class ResultActivity extends AppCompatActivity {
             image.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
 
             f = new File(Environment.getExternalStorageDirectory() + File.separator +
-                     File.separator + nameImage +".jpg");
+                    File.separator + nameImage + ".jpg");
 
             f.createNewFile();
 
