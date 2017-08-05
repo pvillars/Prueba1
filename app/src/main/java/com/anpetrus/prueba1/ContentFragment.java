@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -19,7 +20,6 @@ import static android.view.View.VISIBLE;
 
 public class ContentFragment extends Fragment {
     public ContentFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -68,19 +68,18 @@ public class ContentFragment extends Fragment {
                         break;
                     case Step.GENDER:
                         int genderId = genderGrb.getCheckedRadioButtonId();
-                        if(genderId > -1 && genderId <= 2) {
+                        RadioButton selectedRb = genderGrb.findViewById(genderId);
+
+                        if (genderId > 0) {
                             Intent intent = new Intent(getActivity(), ResultActivity.class);
                             intent.putExtra(Constants.EXTRA_NAME, nameEt.getText().toString());
-                            intent.putExtra(Constants.EXTRA_GENDER_SELECTED, genderId);
+                            intent.putExtra(Constants.EXTRA_GENDER_SELECTED, selectedRb.getText().toString());
                             startActivity(intent);
-                        }else if(genderId > 2){
-                            Toast.makeText(getContext(), R.string.problem_with_selection, Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Toast.makeText(getContext(), R.string.please_select_gender, Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
-
             }
         });
 

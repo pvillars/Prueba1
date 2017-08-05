@@ -30,7 +30,6 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         result(getIntent());
-
     }
 
     @Override
@@ -41,7 +40,6 @@ public class ResultActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     sharePic(getImage(), nameIn, getResources().getString(R.string.message_day));
-
                 } else {
                     Toast.makeText(ResultActivity.this, R.string.permission_denied_read_external_extorage, Toast.LENGTH_LONG).show();
                 }
@@ -55,20 +53,19 @@ public class ResultActivity extends AppCompatActivity {
     private void result(Intent intent) {
 
         nameIn = intent.getStringExtra(Constants.EXTRA_NAME).toUpperCase().trim();
-        int genderSelected = intent.getIntExtra(Constants.EXTRA_GENDER_SELECTED, -1);
+        String genderSelected = intent.getStringExtra(Constants.EXTRA_GENDER_SELECTED);
 
         final ImageView imageResult = (ImageView) findViewById(R.id.imageResult);
         TextView textResult = (TextView) findViewById(R.id.textResult);
 
-        switch (genderSelected) {
-            case 1:
-                textResult.setText(nameIn + getResources().getString(R.string.message_day_male));
-                imageResult.setImageResource(R.mipmap.beer);
-                break;
-            case 2:
-                textResult.setText(nameIn + getResources().getString(R.string.message_day_female));
-                imageResult.setImageResource(R.mipmap.flower);
-                break;
+        String maleText = getResources().getString(R.string.male_radio_button);
+
+        if(genderSelected.equals(maleText)){
+            textResult.setText(nameIn + getResources().getString(R.string.message_day_male));
+            imageResult.setImageResource(R.mipmap.beer);
+        }else{
+            textResult.setText(nameIn + getResources().getString(R.string.message_day_female));
+            imageResult.setImageResource(R.mipmap.flower);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sendImage);
@@ -123,6 +120,5 @@ public class ResultActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("ERROR", e.getMessage());
         }
-
     }
 }
